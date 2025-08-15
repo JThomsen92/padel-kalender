@@ -1,0 +1,8 @@
+{
+  "name": "padel-kalender",
+  "version": "1.0.0",
+  "description": "Padel 7500 CT Kalender",
+  "dependencies": {
+    "googleapis": "^118.0.0"
+  }
+}
