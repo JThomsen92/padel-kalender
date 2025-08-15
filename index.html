@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padel 7500 CT - Din Fertilitet | Kalender 2025</title>
+    <style>
+        /* Reset og base styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Event type farver */
+            --lunar-train: #14b8a6;
+            --move-train: #a78bfa;
+            --klaus-train: #6366f1;
+            --lunar-match: #ef4444;
+            --tournament: #f59e0b;
+            --lunar-fixed: #22c55e;
+            --lunar-pending: #eab308;
+            --practice-match: #3b82f6;
+            --other: #9ba3b4;
+            
+            /* UI farver */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: #475569;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Container og layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px var(--shadow);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Connection Status */
+        .connection-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .connection-status.connected {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid #22c55e;
+        }
+
+        .connection-status.disconnected {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+
+        .connection-status.loading {
+            background: rgba(234, 179, 8, 0.2);
+            color: #eab308;
+            border: 1px solid #eab308;
+        }
+
+        /* Buttons */
+        button {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            min-height: 40px;
+        }
+
+        button:hover {
+            background: #475569;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        button:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
+        }
+
+        button.primary {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        button.primary:hover {
+            background: #2563eb;
+        }
+
+        /* Next Event Card */
+        .next-event-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .next-event-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .event-type-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .countdown {
+            font-size: 1.1rem;
+            color: #60a5fa;
+            margin: 0.5rem 0;
+        }
+
+        /* Attendance Summary in Next Event */
+        .attendance-summary {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .attendance-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .attendance-badge.confirmed {
+            background: rgba(5, 150, 105, 0.2);
+            color: #059669;
+            border: 1px solid #059669;
+        }
+
+        .attendance-badge.declined {
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+            border: 1px solid #dc2626;
+        }
+
+        .attendance-badge.pending {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .signup-button {
+            background: #059669;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+
+        .signup-button:hover {
+            background: #047857;
+            transform: translateY(-2px);
+        }
+
+        /* Calendar */
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .calendar-nav button {
+            padding: 0.5rem 1rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: auto repeat(7, 1fr);
+            gap: 2px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .week-header {
+            text-align: center;
+            font-weight: 700;
+            padding: 0.5rem 0.25rem;
+            color: #60a5fa;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            min-width: 35px;
+            margin-right: 2px;
+        }
+
+        .week-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #60a5fa;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 0.25rem;
+            min-width: 35px;
+            transition: all 0.2s;
+            cursor: default;
+            border: 1px solid var(--border);
+            margin-right: 2px;
+            height: 110px;
+        }
+
+        .week-number:hover {
+            background: #475569;
+            transform: scale(1.05);
+        }
+
+        .week-number.current-week {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .week-number.current-week:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+        }
+
+        .day-header {
+            text-align: center;
+            font-weight: 600;
+            padding: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            background: var(--bg-primary);
+            height: 110px;
+            padding: 0.5rem;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .calendar-day.other-month {
+            opacity: 0.4;
+            background: var(--bg-tertiary);
+        }
+
+        .calendar-day.today {
+            box-shadow: inset 0 0 0 3px #60a5fa;
+        }
+
+        .calendar-day.today.has-event {
+            box-shadow: inset 0 0 0 3px white;
+        }
+
+        .calendar-day:not(.other-month):not(.has-event):hover {
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            box-shadow: inset 0 0 0 2px #475569;
+        }
+
+        .calendar-day.has-event {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .calendar-day.has-event:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px var(--shadow);
+            z-index: 10;
+        }
+
+        .day-number {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            z-index: 2;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .calendar-day.has-event .day-number {
+            color: white;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-indicator {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-info {
+            font-size: 0.65rem;
+            color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            z-index: 2;
+            line-height: 1.2;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            margin-bottom: 0.15rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Attendance indicators on calendar */
+        .attendance-mini {
+            display: flex;
+            gap: 2px;
+            margin-top: 2px;
+            font-size: 0.55rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .attendance-mini span {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1px 3px;
+            border-radius: 3px;
+        }
+
+        /* Upcoming Events */
+        .upcoming-events {
+            margin: 2rem 0;
+        }
+
+        .upcoming-events h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .event-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .event-color-bar {
+            width: 4px;
+            flex-shrink: 0;
+        }
+
+        .event-card-content {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .event-card-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-card-details {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .event-card-attendance {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            min-height: 40px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: -1px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Player Grid for Attendance */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .player-status {
+            background: var(--bg-tertiary);
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .player-status:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .player-status.confirmed {
+            background: rgba(5, 150, 105, 0.2);
+            border: 1px solid #059669;
+        }
+
+        .player-status.declined {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid #dc2626;
+        }
+
+        .status-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Form actions */
+        .form-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* File input */
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow);
+            animation: slideIn 0.3s ease;
+            z-index: 2000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.error {
+            background: #dc2626;
+        }
+
+        .toast.success {
+            background: #059669;
+        }
+
+        /* Sheets Setup Info */
+        .sheets-info {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .sheets-info h3 {
+            margin-bottom: 0.5rem;
+            color: #60a5fa;
+        }
+
+        .sheets-info ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .sheets-info code {
+            background: var(--bg-primary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .sheets-link {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .sheets-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Hidden file input */
+        .hidden {
+            display: none;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--text-secondary);
+            border-radius: 50%;
+            border-top-color: #60a5fa;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Quick signup buttons */
+        .quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .quick-signup {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .quick-signup.confirm {
+            background: #059669;
+            color: white;
+            border: none;
+        }
+
+        .quick-signup.confirm:hover {
+            background: #047857;
+        }
+
+        .quick-signup.decline {
+            background: #dc2626;
+            color: white;
+            border: none;
+        }
+
+        .quick-signup.decline:hover {
+            background: #b91c1c;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .calendar-grid {
+                gap: 1px;
+                padding: 0.5rem;
+                grid-template-columns: auto repeat(7, 1fr);
+            }
+            
+            .calendar-day {
+                height: 90px;
+                padding: 0.25rem;
+            }
+            
+            .day-number {
+                font-size: 0.8rem;
+            }
+            
+            .event-info {
+                font-size: 0.55rem;
+            }
+            
+            .week-number {
+                font-size: 0.7rem;
+                min-width: 25px;
+                padding: 0.1rem;
+                font-weight: 600;
+                height: 90px;
+            }
+            
+            .week-header {
+                font-size: 0.65rem;
+                min-width: 25px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .attendance-mini {
+                font-size: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .calendar-day {
+                height: 80px;
+                padding: 0.2rem;
+            }
+            
+            .day-number {
+                font-size: 0.75rem;
+                margin-bottom: 0.15rem;
+                font-weight: 700;
+            }
+            
+            .event-info {
+                font-size: 0.5rem;
+                line-height: 1.15;
+                margin-bottom: 0.1rem;
+            }
+            
+            .week-number {
+                font-size: 0.65rem;
+                min-width: 20px;
+                height: 80px;
+            }
+            
+            .event-indicator {
+                gap: 1px;
+            }
+
+            .attendance-mini {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header med actions -->
+        <header class="header">
+            <h1>🎾 Padel 7500 CT - Din Fertilitet</h1>
+            <div class="header-actions">
+                <button class="primary" onclick="openModal()">➕ Ny begivenhed</button>
+                <button onclick="openSheetsSetup()">⚙️ Google Sheets</button>
+                <button onclick="exportICS()" title="Fungerer med Google Calendar, Apple Calendar, Outlook og Android kalendre">📥 Eksport kalender</button>
+                <button onclick="exportJSON()">💾 Eksport data</button>
+                <div class="file-input-wrapper">
+                    <button onclick="document.getElementById('importFile').click()">📤 Importér</button>
+                    <input type="file" id="importFile" accept="application/json" onchange="importJSON(event)" class="hidden">
+                </div>
+                <div id="connectionStatus" class="connection-status loading">
+                    <div class="spinner"></div>
+                    <span>Forbinder...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Næste event -->
+        <div id="nextEventCard" class="next-event-card"></div>
+
+        <!-- Kalender navigation -->
+        <div class="calendar-nav">
+            <button onclick="changeMonth(-1)">⬅️ Forrige</button>
+            <h2 id="currentMonth"></h2>
+            <button onclick="changeMonth(1)">Næste ➡️</button>
+        </div>
+
+        <!-- Kalender -->
+        <div id="calendar" class="calendar-grid"></div>
+
+        <!-- Kommende begivenheder -->
+        <div class="upcoming-events">
+            <h2>📅 Kommende holdaktiviteter</h2>
+            <div id="upcomingEvents"></div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Ny begivenhed</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm" onsubmit="saveEvent(event)">
+                    <div class="form-group">
+                        <label for="eventDate">Dato *</label>
+                        <input type="date" id="eventDate" required min="2025-08-01" max="2025-12-31">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventType">Type *</label>
+                        <select id="eventType" required>
+                            <option value="">Vælg type...</option>
+                            <option value="Lunar-træning">Lunar-træning</option>
+                            <option value="Træning med Move Your Game">Træning med Move Your Game</option>
+                            <option value="Træning med Klaus Balic">Træning med Klaus Balic</option>
+                            <option value="Lunar-kampe">Lunar-kampe</option>
+                            <option value="Turneringer i Padel7500">Turneringer i Padel7500</option>
+                            <option value="Lunar-kampe, fastlagt">Lunar-kampe, fastlagt</option>
+                            <option value="Lunar-kampe, ved at blive fastlagt">Lunar-kampe, ved at blive fastlagt</option>
+                            <option value="Træningskampe mod andre hold">Træningskampe mod andre hold</option>
+                            <option value="Andet">Andet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventStart">Start tid *</label>
+                        <input type="time" id="eventStart" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventEnd">Slut tid *</label>
+                        <input type="time" id="eventEnd" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventTitle">Titel *</label>
+                        <input type="text" id="eventTitle" required placeholder="F.eks. Holdtræning eller vs Modstander">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventLocation">Sted</label>
+                        <input type="text" id="eventLocation" placeholder="F.eks. Padel7500">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventNotes">Noter</label>
+                        <textarea id="eventNotes" placeholder="Yderligere information..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventRepeat">Gentag</label>
+                        <select id="eventRepeat" onchange="toggleRepeatUntil()">
+                            <option value="none">Ingen gentagelse</option>
+                            <option value="weekly">Hver uge</option>
+                            <option value="biweekly">Hver 2. uge</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="repeatUntilGroup" style="display: none;">
+                        <label for="repeatUntil">Gentag indtil</label>
+                        <input type="date" id="repeatUntil" value="2025-12-31" min="2025-08-01" max="2025-12-31">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" onclick="closeModal()">Annuller</button>
+                        <button type="button" id="deleteBtn" onclick="deleteEvent()" style="display: none; background: #dc2626;">Slet</button>
+                        <button type="submit" class="primary">Gem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Sheets Setup Modal -->
+    <div id="sheetsSetupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔧 Google Sheets Opsætning</h3>
+                <button class="modal-close" onclick="closeSheetsSetup()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="sheets-info">
+                    <h3>📋 Sådan sætter du Google Sheets op:</h3>
+                    <ol>
+                        <li><strong>Klik her for at kopiere skabelonen:</strong>
+                            <br><a href="https://docs.google.com/spreadsheets/d/1YmZXH_8RNZ6vJGqWHGTJ9UzWqLs7K0OfX_EBVhgxFo8/copy" target="_blank" class="sheets-link">📊 Kopiér Padel 7500 CT skabelon</a>
+                        </li>
+                        <li><strong>Kopiér dit nye Sheet ID:</strong>
+                            <br>Fra URL'en: <code>docs.google.com/spreadsheets/d/<span style="color: #10b981;">SHEET_ID_HER</span>/edit</code>
+                        </li>
+                        <li><strong>Del arket:</strong>
+                            <br>Klik "Del" → "Alle med linket" → "Kan redigere"
+                        </li>
+                        <li><strong>Aktiver Google Sheets API:</strong>
+                            <br><a href="https://console.cloud.google.com/apis/library/sheets.googleapis.com" target="_blank" class="sheets-link">Gå til Google Cloud Console</a>
+                        </li>
+                        <li><strong>Opret API nøgle:</strong>
+                            <br>Under "Legitimationsoplysninger" → "Opret legitimationsoplysninger" → "API-nøgle"
+                        </li>
+                    </ol>
+                </div>
+                
+                <form id="sheetsSetupForm" onsubmit="saveSheetsConfig(event)">
+                    <div class="form-group">
+                        <label for="sheetsId">Google Sheets ID *</label>
+                        <input type="text" id="sheetsId" required placeholder="f.eks. 1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sheetsApiKey">Google API Nøgle *</label>
+                        <input type="text" id="sheetsApiKey" required placeholder="f.eks. AIzaSyDyJPPl...">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" onclick="closeSheetsSetup()">Annuller</button>
+                        <button type="submit" class="primary">Gem og Test</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="attendanceTitle">Tilmelding</h3>
+                <button class="modal-close" onclick="closeAttendance()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="attendanceDetails"></div>
+                
+                <div class="form-group">
+                    <label for="playerName">Vælg dit navn *</label>
+                    <select id="playerName" required>
+                        <option value="">Vælg spiller...</option>
+                        <option value="Niklas Skjødt">Niklas Skjødt</option>
+                        <option value="Jesper Thomsen">Jesper Thomsen</option>
+                        <option value="Martin Svelle">Martin Svelle</option>
+                        <option value="Heine Olesen">Heine Olesen</option>
+                        <option value="Jesper Skjødt">Jesper Skjødt</option>
+                        <option value="Christian Stistrup">Christian Stistrup</option>
+                        <option value="Nicklas Olesen">Nicklas Olesen</option>
+                    </select>
+                </div>
+                
+                <div class="quick-actions">
+                    <button type="button" class="quick-signup confirm" onclick="updateAttendance('confirmed')">
+                        ✅ Jeg kommer
+                    </button>
+                    <button type="button" class="quick-signup decline" onclick="updateAttendance('declined')">
+                        ❌ Kan ikke
+                    </button>
+                </div>
+                
+                <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Nuværende tilmeldinger:</h4>
+                <div id="currentAttendance" class="player-grid">
+                    <!-- Will be populated with current attendance -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Konstanter og konfiguration
+        const STORAGE_KEY = 'padelCalendar2025';
+        const START_DATE = new Date(2025, 7, 1); // August 1, 2025
+        const END_DATE = new Date(2025, 11, 31); // December 31, 2025
+        
+        const ROSTER = [
+            "Niklas Skjødt",
+            "Jesper Thomsen",
+            "Martin Svelle",
+            "Heine Olesen",
+            "Jesper Skjødt",
+            "Christian Stistrup",
+            "Nicklas Olesen"
+        ];
+
+        // Google Sheets configuration
+        const SHEETS_CONFIG = {
+            spreadsheetId: '',
+            apiKey: '',
+            range: 'A1:M100' // Expanded to include all player columns
+        };
+
+        // Function to check if Sheets is configured
+        function isSheetsConfigured() {
+            const config = localStorage.getItem('sheetsConfig');
+            if (config) {
+                const parsed = JSON.parse(config);
+                SHEETS_CONFIG.spreadsheetId = parsed.spreadsheetId;
+                SHEETS_CONFIG.apiKey = parsed.apiKey;
+            }
+            return SHEETS_CONFIG.spreadsheetId && SHEETS_CONFIG.apiKey;
+        }
+
+        const EVENT_TYPES = {
+            'Lunar-træning': { color: '#14b8a6', key: 'lunar_train' },
+            'Træning med Move Your Game': { color: '#a78bfa', key: 'move_train' },
+            'Træning med Klaus Balic': { color: '#6366f1', key: 'klaus_train' },
+            'Lunar-kampe': { color: '#ef4444', key: 'lunar_match' },
+            'Turneringer i Padel7500': { color: '#f59e0b', key: 'tournament' },
+            'Lunar-kampe, fastlagt': { color: '#22c55e', key: 'lunar_fixed' },
+            'Lunar-kampe, ved at blive fastlagt': { color: '#eab308', key: 'lunar_pending' },
+            'Træningskampe mod andre hold': { color: '#3b82f6', key: 'practice_match' },
+            'Andet': { color: '#9ba3b4', key: 'other' }
+        };
+
+        // State
+        let events = [];
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let editingEventId = null;
+        let countdownInterval = null;
+        let sheetsInterval = null;
+        let currentEventForAttendance = null;
+
+        // Utility funktioner
+        function getEventColor(type) {
+            const typeInfo = EVENT_TYPES[type];
+            return typeInfo ? typeInfo.color : '#9ba3b4';
+        }
+
+        function escapeICS(str) {
+            if (!str) return '';
+            return str
+                .replace(/\\/g, '\\\\')
+                .replace(/;/g, '\\;')
+                .replace(/,/g, '\\,')
+                .replace(/\n/g, '\\n');
+        }
+
+        function toICSStamp(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${year}${month}${day}T${hours}${minutes}${seconds}`;
+        }
+
+        function withinLimits(date) {
+            const d = new Date(date);
+            return d >= START_DATE && d <= END_DATE;
+        }
+
+        function parseTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return { hours, minutes };
+        }
+
+        function formatTime(date) {
+            return `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+        }
+
+        function formatDate(date) {
+            const d = new Date(date);
+            const months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+            return `${d.getDate()}. ${months[d.getMonth()]}`;
+        }
+
+        function formatDateTime(date) {
+            const d = new Date(date);
+            return `${formatDate(d)} kl. ${formatTime(d)}`;
+        }
+
+        // Toast notifikationer
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Storage funktioner
+        function loadAll() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    events = JSON.parse(stored);
+                }
+                
+                // Load Sheets config
+                const sheetsConfig = localStorage.getItem('sheetsConfig');
+                if (sheetsConfig) {
+                    const config = JSON.parse(sheetsConfig);
+                    SHEETS_CONFIG.spreadsheetId = config.spreadsheetId || '';
+                    SHEETS_CONFIG.apiKey = config.apiKey || '';
+                }
+            } catch (e) {
+                console.error('Fejl ved indlæsning:', e);
+                events = [];
+            }
+        }
+
+        function saveAll() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+            } catch (e) {
+                console.error('Fejl ved gemning:', e);
+                showToast('Kunne ikke gemme data', 'error');
+            }
+        }
+
+        // Connection status
+        function updateConnectionStatus(status) {
+            const statusEl = document.getElementById('connectionStatus');
+            statusEl.className = `connection-status ${status}`;
+            
+            if (status === 'connected') {
+                statusEl.innerHTML = '<span>✅</span><span>Online</span>';
+            } else if (status === 'disconnected') {
+                statusEl.innerHTML = '<span>⚠️</span><span>Offline</span>';
+            } else {
+                statusEl.innerHTML = '<div class="spinner"></div><span>Forbinder...</span>';
+            }
+        }
+
+        // Google Sheets Integration Functions
+        async function loadFromSheets() {
+            if (!isSheetsConfigured()) {
+                updateConnectionStatus('disconnected');
+                return;
+            }
+            
+            try {
+                updateConnectionStatus('loading');
+                
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_CONFIG.spreadsheetId}/values/${SHEETS_CONFIG.range}?key=${SHEETS_CONFIG.apiKey}`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error('Kunne ikke hente data fra Google Sheets');
+                }
+                
+                const data = await response.json();
+                console.log('Loaded from Sheets:', data);
+                
+                // Update events with attendance data
+                if (data.values) {
+                    updateEventsWithAttendance(data.values);
+                }
+                
+                updateConnectionStatus('connected');
+                return data;
+            } catch (error) {
+                console.error('Sheets error:', error);
+                updateConnectionStatus('disconnected');
+            }
+        }
+
+        function updateEventsWithAttendance(sheetData) {
+            // Skip header rows
+            if (!sheetData || sheetData.length < 4) return;
+            
+            // Parse sheet data starting from row 4 (index 3)
+            for (let i = 3; i < sheetData.length; i++) {
+                const row = sheetData[i];
+                if (!row || row.length < 6) continue;
+                
+                const weekNum = row[0]; // Week number
+                const dateStr = row[1]; // Date
+                const dayName = row[2]; // Day name
+                const activity = row[3]; // Activity
+                const location = row[4]; // Location
+                const time = row[5]; // Time
+                
+                // Player columns start at index 6
+                const playerStatuses = {
+                    'Niklas Skjødt': row[6] || '',
+                    'Jesper Thomsen': row[7] || '',
+                    'Martin Svelle': row[8] || '',
+                    'Heine Olesen': row[9] || '',
+                    'Jesper Skjødt': row[10] || '',
+                    'Christian Stistrup': row[11] || '',
+                    'Nicklas Olesen': row[12] || ''
+                };
+                
+                // Convert sheet status to our format
+                const attendance = {};
+                Object.entries(playerStatuses).forEach(([player, status]) => {
+                    if (status === '✅' || status.toLowerCase() === 'ja') {
+                        attendance[player] = 'confirmed';
+                    } else if (status === '❌' || status.toLowerCase() === 'nej') {
+                        attendance[player] = 'declined';
+                    }
+                });
+                
+                // Find matching event
+                if (dateStr && activity) {
+                    const matchingEvent = events.find(e => {
+                        const eventDate = new Date(e.startDate);
+                        const eventDateStr = formatDate(eventDate);
+                        
+                        // Match by date and activity
+                        return eventDateStr === dateStr && 
+                               (e.title.includes(activity) || 
+                                activity.includes(e.title) ||
+                                (e.location && activity.includes(e.location)));
+                    });
+                    
+                    if (matchingEvent) {
+                        matchingEvent.attendance = attendance;
+                    }
+                }
+            }
+            
+            // Re-render
+            renderCalendar();
+            renderUpcoming();
+            updateNextEvent();
+        }
+
+        async function updateSheetsAttendance(event, playerName, status) {
+            if (!isSheetsConfigured()) return;
+            
+            // Find the row for this event
+            const eventDateStr = formatDate(new Date(event.startDate));
+            const playerIndex = ROSTER.indexOf(playerName);
+            
+            if (playerIndex === -1) return;
+            
+            // Column mapping: Players start at column G (index 6)
+            const column = String.fromCharCode(71 + playerIndex); // G, H, I, J, K, L, M
+            
+            const statusSymbol = status === 'confirmed' ? '✅' : '❌';
+            
+            // Update via Google Sheets API
+            try {
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEETS_CONFIG.spreadsheetId}/values:batchUpdate?key=${SHEETS_CONFIG.apiKey}`;
+                
+                const requestBody = {
+                    valueInputOption: 'USER_ENTERED',
+                    data: [{
+                        range: `${column}4:${column}100`, // Update the entire column
+                        values: [[statusSymbol]]
+                    }]
+                };
+                
+                // Note: This requires write access to the sheet
+                // For now, we'll just update locally
+                console.log('Would update sheet:', column, statusSymbol);
+                showToast('Tilmelding gemt lokalt (Google Sheets kræver skriveadgang)', 'info');
+            } catch (error) {
+                console.error('Failed to update sheet:', error);
+            }
+        }
+
+        function openSheetsSetup() {
+            document.getElementById('sheetsSetupModal').classList.add('active');
+            
+            // Load saved config if exists
+            const saved = localStorage.getItem('sheetsConfig');
+            if (saved) {
+                const config = JSON.parse(saved);
+                document.getElementById('sheetsId').value = config.spreadsheetId || '';
+                document.getElementById('sheetsApiKey').value = config.apiKey || '';
+            }
+        }
+
+        function closeSheetsSetup() {
+            document.getElementById('sheetsSetupModal').classList.remove('active');
+        }
+
+        async function saveSheetsConfig(e) {
+            e.preventDefault();
+            
+            const spreadsheetId = document.getElementById('sheetsId').value;
+            const apiKey = document.getElementById('sheetsApiKey').value;
+            
+            SHEETS_CONFIG.spreadsheetId = spreadsheetId;
+            SHEETS_CONFIG.apiKey = apiKey;
+            
+            // Save to localStorage
+            localStorage.setItem('sheetsConfig', JSON.stringify({
+                spreadsheetId,
+                apiKey
+            }));
+            
+            // Test connection
+            try {
+                await loadFromSheets();
+                showToast('Google Sheets forbundet!', 'success');
+                closeSheetsSetup();
+                
+                // Start auto-refresh
+                startSheetsSync();
+            } catch (error) {
+                showToast('Kunne ikke forbinde til Google Sheets. Tjek dine indstillinger.', 'error');
+            }
+        }
+
+        function startSheetsSync() {
+            // Clear existing interval
+            if (sheetsInterval) {
+                clearInterval(sheetsInterval);
+            }
+            
+            // Sync every 30 seconds
+            sheetsInterval = setInterval(() => {
+                loadFromSheets();
+            }, 30000);
+        }
+
+        // Attendance functions
+        function openAttendance(eventId) {
+            const event = events.find(e => e.id === eventId);
+            if (!event) return;
+            
+            currentEventForAttendance = event;
+            
+            const modal = document.getElementById('attendanceModal');
+            document.getElementById('attendanceTitle').textContent = `Tilmelding: ${event.title}`;
+            
+            const details = document.getElementById('attendanceDetails');
+            details.innerHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <strong>📅 Dato:</strong> ${formatDateTime(event.startDate)}<br>
+                    <strong>📍 Sted:</strong> ${event.location || 'Ikke angivet'}<br>
+                    <strong>⏰ Tid:</strong> ${formatTime(new Date(event.startDate))} - ${formatTime(new Date(event.endDate))}
+                </div>
+            `;
+            
+            updateAttendanceDisplay();
+            modal.classList.add('active');
+        }
+
+        function closeAttendance() {
+            document.getElementById('attendanceModal').classList.remove('active');
+            currentEventForAttendance = null;
+        }
+
+        function updateAttendance(status) {
+            const playerName = document.getElementById('playerName').value;
+            
+            if (!playerName) {
+                showToast('Vælg dit navn først', 'error');
+                return;
+            }
+            
+            if (!currentEventForAttendance) return;
+            
+            // Initialize attendance if not exists
+            if (!currentEventForAttendance.attendance) {
+                currentEventForAttendance.attendance = {};
+            }
+            
+            // Update attendance
+            currentEventForAttendance.attendance[playerName] = status;
+            
+            // Save to localStorage
+            saveAll();
+            
+            // Update display
+            updateAttendanceDisplay();
+            renderCalendar();
+            renderUpcoming();
+            updateNextEvent();
+            
+            showToast(`Din tilmelding er gemt: ${status === 'confirmed' ? '✅ Kommer' : '❌ Kan ikke'}`, 'success');
+            
+            // Update Google Sheets if configured
+            if (isSheetsConfigured()) {
+                updateSheetsAttendance(currentEventForAttendance, playerName, status);
+            }
+        }
+
+        function updateAttendanceDisplay() {
+            if (!currentEventForAttendance) return;
+            
+            const container = document.getElementById('currentAttendance');
+            const attendance = currentEventForAttendance.attendance || {};
+            
+            let html = '';
+            
+            ROSTER.forEach(player => {
+                const status = attendance[player] || 'pending';
+                const statusIcon = status === 'confirmed' ? '✅' : status === 'declined' ? '❌' : '⏳';
+                const statusClass = status === 'confirmed' ? 'confirmed' : status === 'declined' ? 'declined' : '';
+                
+                html += `
+                    <div class="player-status ${statusClass}">
+                        <span>${player}</span>
+                        <span class="status-icon">${statusIcon}</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function getAttendanceSummary(event) {
+            if (!event.attendance) return { confirmed: 0, declined: 0, pending: ROSTER.length };
+            
+            let confirmed = 0;
+            let declined = 0;
+            
+            ROSTER.forEach(player => {
+                const status = event.attendance[player];
+                if (status === 'confirmed') confirmed++;
+                else if (status === 'declined') declined++;
+            });
+            
+            return {
+                confirmed,
+                declined,
+                pending: ROSTER.length - confirmed - declined
+            };
+        }
+
+        // Event håndtering
+        function generateId() {
+            return `event_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        }
+
+        function findNextEvent() {
+            const now = new Date();
+            const upcoming = events
+                .filter(e => new Date(e.startDate) > now)
+                .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+            return upcoming[0];
+        }
+
+        function updateNextEvent() {
+            const nextEvent = findNextEvent();
+            const card = document.getElementById('nextEventCard');
+            
+            if (!nextEvent) {
+                card.innerHTML = `
+                    <h2>📅 Næste holdbegivenhed</h2>
+                    <p style="color: var(--text-secondary)">Ingen kommende begivenheder for Padel 7500 CT - Din Fertilitet</p>
+                `;
+                return;
+            }
+
+            const now = new Date();
+            const eventStart = new Date(nextEvent.startDate);
+            const diff = eventStart - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            let countdown = '';
+            if (days > 0) countdown += `${days} dag${days !== 1 ? 'e' : ''} `;
+            if (hours > 0) countdown += `${hours} time${hours !== 1 ? 'r' : ''} `;
+            if (days === 0 && minutes > 0) countdown += `${minutes} min `;
+            if (countdown === '') countdown = 'Nu!';
+
+            const color = getEventColor(nextEvent.type);
+            const summary = getAttendanceSummary(nextEvent);
+            
+            card.innerHTML = `
+                <h2>📅 Næste holdbegivenhed</h2>
+                <span class="event-type-tag" style="background: ${color}">${nextEvent.type}</span>
+                <h3>${nextEvent.title}</h3>
+                <div class="event-card-details">
+                    <div>📍 ${nextEvent.location || 'Ingen placering'}</div>
+                    <div>🕐 ${formatDateTime(nextEvent.startDate)} - ${formatTime(new Date(nextEvent.endDate))}</div>
+                </div>
+                <div class="countdown">⏱️ Om ${countdown}</div>
+                <div class="attendance-summary">
+                    <span class="attendance-badge confirmed">✅ ${summary.confirmed} kommer</span>
+                    <span class="attendance-badge declined">❌ ${summary.declined} kan ikke</span>
+                    <span class="attendance-badge pending">⏳ ${summary.pending} afventer</span>
+                </div>
+                <button class="signup-button" onclick="openAttendance('${nextEvent.id}')">
+                    📝 Meld til/fra
+                </button>
+            `;
+        }
+
+        function updateCountdown() {
+            updateNextEvent();
+        }
+
+        // Get ISO week number
+        function getWeekNumber(date) {
+            const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+            const dayNum = d.getUTCDay() || 7;
+            d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        // Kalender rendering
+        function renderCalendar() {
+            const calendar = document.getElementById('calendar');
+            const monthNames = ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 
+                              'Juli', 'August', 'September', 'Oktober', 'November', 'December'];
+            
+            document.getElementById('currentMonth').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Clear calendar
+            calendar.innerHTML = '';
+            
+            // Add week header in corner
+            const weekHeaderCorner = document.createElement('div');
+            weekHeaderCorner.className = 'week-header';
+            weekHeaderCorner.textContent = 'Uge';
+            weekHeaderCorner.title = 'ISO ugenummer';
+            calendar.appendChild(weekHeaderCorner);
+            
+            // Weekday headers
+            const weekdays = ['Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør', 'Søn'];
+            weekdays.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'day-header';
+                header.textContent = day;
+                calendar.appendChild(header);
+            });
+
+            // Get first day of month and adjust for Monday start
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            let startDay = firstDay.getDay() - 1; // Convert to Monday = 0
+            if (startDay < 0) startDay = 6;
+
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+            // Track weeks
+            let allDays = [];
+
+            // Previous month days
+            for (let i = startDay - 1; i >= 0; i--) {
+                const day = daysInPrevMonth - i;
+                const date = new Date(currentYear, currentMonth - 1, day);
+                allDays.push({ day, date, isOtherMonth: true });
+            }
+
+            // Current month days
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(currentYear, currentMonth, day);
+                allDays.push({ day, date, isOtherMonth: false, isToday: today.toDateString() === date.toDateString() });
+            }
+
+            // Next month days - ensure we always show 6 weeks (42 days total)
+            const remainingDays = 42 - allDays.length;
+            for (let day = 1; day <= remainingDays; day++) {
+                const date = new Date(currentYear, currentMonth + 1, day);
+                allDays.push({ day, date, isOtherMonth: true });
+            }
+
+            // Render weeks
+            for (let weekStart = 0; weekStart < allDays.length; weekStart += 7) {
+                const weekDays = allDays.slice(weekStart, weekStart + 7);
+                
+                // Add week number
+                const weekNum = document.createElement('div');
+                weekNum.className = 'week-number';
+                const weekNumber = getWeekNumber(weekDays[0].date);
+                weekNum.textContent = weekNumber;
+                weekNum.title = `Uge ${weekNumber}`;
+                
+                // Check if this is the current week
+                const today = new Date();
+                const currentWeekNumber = getWeekNumber(today);
+                if (weekNumber === currentWeekNumber && 
+                    weekDays.some(d => !d.isOtherMonth && d.date.getMonth() === today.getMonth())) {
+                    weekNum.classList.add('current-week');
+                }
+                
+                calendar.appendChild(weekNum);
+
+                // Add days of the week
+                weekDays.forEach(({ day, date, isOtherMonth, isToday }) => {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day';
+                    
+                    if (isOtherMonth) {
+                        dayEl.classList.add('other-month');
+                    }
+                    
+                    if (isToday) {
+                        dayEl.classList.add('today');
+                    }
+
+                    const dayEvents = events.filter(e => {
+                        const eventDate = new Date(e.startDate);
+                        return eventDate.toDateString() === date.toDateString();
+                    });
+
+                    let content = `<div class="day-number">${day}</div>`;
+                    
+                    if (dayEvents.length > 0) {
+                        // Color the entire day with the first event's color
+                        const primaryEvent = dayEvents[0];
+                        const color = getEventColor(primaryEvent.type);
+                        
+                        // If multiple events with different types, use a gradient
+                        if (dayEvents.length > 1) {
+                            const uniqueColors = [...new Set(dayEvents.map(e => getEventColor(e.type)))];
+                            if (uniqueColors.length > 1) {
+                                dayEl.style.background = `linear-gradient(135deg, ${uniqueColors.slice(0, 2).join(', ')})`;
+                            } else {
+                                dayEl.style.background = color;
+                            }
+                        } else {
+                            dayEl.style.background = color;
+                        }
+                        
+                        dayEl.classList.add('has-event');
+                        
+                        // Make text white on colored background
+                        dayEl.style.color = 'white';
+                        
+                        // Add event info
+                        content += '<div class="event-indicator">';
+                        dayEvents.slice(0, 2).forEach(event => {
+                            const startTime = formatTime(new Date(event.startDate));
+                            const summary = getAttendanceSummary(event);
+                            
+                            // Shorten title
+                            let titleShort = event.title;
+                            if (titleShort.length > 20) {
+                                titleShort = titleShort.substring(0, 20) + '...';
+                            }
+                            
+                            content += `
+                                <div class="event-info" title="${event.title} - ${event.location || 'Ingen lokation'}">
+                                    <div style="display: flex; align-items: center; gap: 3px; font-weight: 600;">
+                                        <span style="min-width: 32px;">${startTime}</span>
+                                        <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${titleShort}</span>
+                                    </div>
+                                    <div class="attendance-mini">
+                                        <span>✅${summary.confirmed}</span>
+                                        <span>❌${summary.declined}</span>
+                                        <span>⏳${summary.pending}</span>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        if (dayEvents.length > 2) {
+                            content += `<div class="event-info" style="font-size: 0.6rem; opacity: 0.9; text-align: center;">+${dayEvents.length - 2} mere...</div>`;
+                        }
+                        content += '</div>';
+                        
+                        // Add click handler for the entire day
+                        dayEl.onclick = () => {
+                            if (dayEvents.length === 1) {
+                                openAttendance(dayEvents[0].id);
+                            } else {
+                                // Show first event's attendance for now
+                                openAttendance(dayEvents[0].id);
+                            }
+                        };
+                    } else {
+                        // Add click handler for empty days to create new event
+                        dayEl.onclick = () => {
+                            const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                            openModal(null, dateStr);
+                        };
+                        dayEl.style.cursor = 'pointer';
+                        dayEl.title = 'Klik for at oprette begivenhed';
+                    }
+
+                    dayEl.innerHTML = content;
+                    calendar.appendChild(dayEl);
+                });
+            }
+        }
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar();
+        }
+
+        // Upcoming events
+        function renderUpcoming() {
+            const container = document.getElementById('upcomingEvents');
+            const now = new Date();
+            const upcoming = events
+                .filter(e => new Date(e.startDate) > now)
+                .sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
+                .slice(0, 10); // Show max 10
+
+            if (upcoming.length === 0) {
+                container.innerHTML = '<p>Ingen kommende begivenheder</p>';
+                return;
+            }
+
+            container.innerHTML = upcoming.map(event => {
+                const color = getEventColor(event.type);
+                const summary = getAttendanceSummary(event);
+                
+                return `
+                    <div class="event-card" onclick="openAttendance('${event.id}')">
+                        <div class="event-color-bar" style="background: ${color}"></div>
+                        <div class="event-card-content">
+                            <div class="event-card-title">${event.title}</div>
+                            <div class="event-card-details">
+                                ${formatDateTime(event.startDate)} - ${formatTime(new Date(event.endDate))}
+                                ${event.location ? ` · 📍 ${event.location}` : ''}
+                            </div>
+                            <div class="event-card-attendance">
+                                <span>✅ ${summary.confirmed}</span>
+                                <span>❌ ${summary.declined}</span>
+                                <span>⏳ ${summary.pending}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modal funktioner
+        function openModal(eventId = null, defaultDate = null) {
+            const modal = document.getElementById('eventModal');
+            const form = document.getElementById('eventForm');
+            
+            editingEventId = eventId;
+            
+            if (eventId) {
+                const event = events.find(e => e.id === eventId);
+                if (event) {
+                    document.getElementById('modalTitle').textContent = 'Rediger begivenhed';
+                    document.getElementById('eventDate').value = event.startDate.split('T')[0];
+                    document.getElementById('eventType').value = event.type;
+                    document.getElementById('eventStart').value = formatTime(new Date(event.startDate));
+                    document.getElementById('eventEnd').value = formatTime(new Date(event.endDate));
+                    document.getElementById('eventTitle').value = event.title;
+                    document.getElementById('eventLocation').value = event.location || '';
+                    document.getElementById('eventNotes').value = event.notes || '';
+                    document.getElementById('deleteBtn').style.display = 'inline-block';
+                }
+            } else {
+                document.getElementById('modalTitle').textContent = 'Ny begivenhed';
+                form.reset();
+                document.getElementById('deleteBtn').style.display = 'none';
+                
+                // Set date from parameter or today if within limits
+                if (defaultDate) {
+                    document.getElementById('eventDate').value = defaultDate;
+                } else {
+                    const today = new Date();
+                    if (withinLimits(today)) {
+                        document.getElementById('eventDate').value = today.toISOString().split('T')[0];
+                    }
+                }
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('eventModal').classList.remove('active');
+            editingEventId = null;
+        }
+
+        function toggleRepeatUntil() {
+            const repeat = document.getElementById('eventRepeat').value;
+            const untilGroup = document.getElementById('repeatUntilGroup');
+            untilGroup.style.display = repeat !== 'none' ? 'block' : 'none';
+        }
+
+        function saveEvent(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('eventDate').value;
+            const type = document.getElementById('eventType').value;
+            const startTime = document.getElementById('eventStart').value;
+            const endTime = document.getElementById('eventEnd').value;
+            const title = document.getElementById('eventTitle').value;
+            const location = document.getElementById('eventLocation').value;
+            const notes = document.getElementById('eventNotes').value;
+            const repeat = document.getElementById('eventRepeat').value;
+            const repeatUntil = document.getElementById('repeatUntil').value;
+
+            // Validate
+            if (!withinLimits(date)) {
+                showToast('Dato skal være mellem 1. aug og 31. dec 2025', 'error');
+                return;
+            }
+
+            const start = parseTime(startTime);
+            const end = parseTime(endTime);
+            if (end.hours < start.hours || (end.hours === start.hours && end.minutes <= start.minutes)) {
+                showToast('Sluttid skal være efter starttid', 'error');
+                return;
+            }
+
+            // Create base event
+            const baseEvent = {
+                type,
+                title,
+                location,
+                notes,
+                attendance: {}
+            };
+
+            // Handle repeating events
+            const eventsToAdd = [];
+            const startDate = new Date(date);
+            
+            if (repeat === 'none' || editingEventId) {
+                // Single event or editing existing
+                const eventStartDate = new Date(date + 'T' + startTime);
+                const eventEndDate = new Date(date + 'T' + endTime);
+                
+                if (editingEventId) {
+                    const index = events.findIndex(e => e.id === editingEventId);
+                    if (index !== -1) {
+                        // Preserve attendance data when editing
+                        const existingAttendance = events[index].attendance || {};
+                        events[index] = {
+                            ...baseEvent,
+                            id: editingEventId,
+                            startDate: eventStartDate.toISOString(),
+                            endDate: eventEndDate.toISOString(),
+                            attendance: existingAttendance
+                        };
+                    }
+                } else {
+                    eventsToAdd.push({
+                        ...baseEvent,
+                        id: generateId(),
+                        startDate: eventStartDate.toISOString(),
+                        endDate: eventEndDate.toISOString()
+                    });
+                }
+            } else {
+                // Repeating events
+                const until = new Date(repeatUntil);
+                const interval = repeat === 'weekly' ? 7 : 14;
+                
+                let currentDate = new Date(startDate);
+                while (currentDate <= until && currentDate <= END_DATE) {
+                    const dateStr = currentDate.toISOString().split('T')[0];
+                    const eventStartDate = new Date(dateStr + 'T' + startTime);
+                    const eventEndDate = new Date(dateStr + 'T' + endTime);
+                    
+                    eventsToAdd.push({
+                        ...baseEvent,
+                        id: generateId(),
+                        startDate: eventStartDate.toISOString(),
+                        endDate: eventEndDate.toISOString()
+                    });
+                    
+                    currentDate.setDate(currentDate.getDate() + interval);
+                }
+            }
+
+            // Add new events with deduplication
+            eventsToAdd.forEach(newEvent => {
+                const isDuplicate = events.some(e => 
+                    e.startDate === newEvent.startDate &&
+                    e.endDate === newEvent.endDate &&
+                    e.title === newEvent.title
+                );
+                
+                if (!isDuplicate) {
+                    events.push(newEvent);
+                }
+            });
+
+            saveAll();
+            closeModal();
+            renderCalendar();
+            renderUpcoming();
+            updateCountdown();
+            showToast(editingEventId ? 'Begivenhed opdateret' : 
+                     `${eventsToAdd.length} begivenhed${eventsToAdd.length > 1 ? 'er' : ''} oprettet`, 'success');
+        }
+
+        function deleteEvent() {
+            if (!editingEventId) return;
+            
+            if (confirm('Er du sikker på at du vil slette denne begivenhed?')) {
+                events = events.filter(e => e.id !== editingEventId);
+                saveAll();
+                closeModal();
+                renderCalendar();
+                renderUpcoming();
+                updateCountdown();
+                showToast('Begivenhed slettet', 'success');
+            }
+        }
+
+        // Add initial trainings and matches for the team
+        function addInitialTeamEvents() {
+            // Monday trainings (except 25/8) - only until 17/11
+            const mondayDates = [
+                '2025-08-04', '2025-08-11', '2025-08-18', // August (not 25th)
+                '2025-09-01', '2025-09-08', '2025-09-15', '2025-09-22', '2025-09-29', // September
+                '2025-10-06', '2025-10-13', '2025-10-20', '2025-10-27', // October
+                '2025-11-03', '2025-11-10', '2025-11-17' // November - stops after 17th
+            ];
+            
+            // Add Monday trainings (sidste træning 17/11)
+            mondayDates.forEach(dateStr => {
+                const startDate = new Date(dateStr + 'T20:00:00');
+                const endDate = new Date(dateStr + 'T22:00:00');
+                
+                const isLastTraining = dateStr === '2025-11-17';
+                
+                events.push({
+                    id: generateId(),
+                    type: 'Lunar-træning',
+                    title: isLastTraining ? 'Holdtræning - Sidste træning!' : 'Holdtræning - Bane 4 & 5',
+                    location: 'Padel7500',
+                    notes: isLastTraining ? 
+                        'SIDSTE holdtræning for sæsonen!' : 
+                        'Ugentlig holdtræning for Padel 7500 CT - Din Fertilitet',
+                    startDate: startDate.toISOString(),
+                    endDate: endDate.toISOString(),
+                    attendance: {}
+                });
+            });
+            
+            // Training matches in August
+            events.push({
+                id: generateId(),
+                type: 'Træningskampe mod andre hold',
+                title: 'Træningskamp mod Jespers Planteskole',
+                location: 'Padel Zone',
+                notes: 'Udekamp',
+                startDate: new Date('2025-08-20T20:00:00').toISOString(),
+                endDate: new Date('2025-08-20T22:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Træningskampe mod andre hold',
+                title: 'Træningskamp mod Kåre & Co',
+                location: 'Padel7500',
+                notes: '',
+                startDate: new Date('2025-08-25T20:00:00').toISOString(),
+                endDate: new Date('2025-08-25T22:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Træningskampe mod andre hold',
+                title: 'Træningskamp mod Yde og Co',
+                location: 'Padel Zone',
+                notes: 'Udekamp',
+                startDate: new Date('2025-08-31T20:00:00').toISOString(),
+                endDate: new Date('2025-08-31T22:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            // Padel og Pizza event
+            events.push({
+                id: generateId(),
+                type: 'Andet',
+                title: '🍕 Padel og Pizza for centerteams',
+                location: 'Padel7500',
+                notes: 'Social event for alle centerteams',
+                startDate: new Date('2025-08-17T16:00:00').toISOString(),
+                endDate: new Date('2025-08-17T21:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            // Klaus Balic trainings - Wednesdays in weeks 36, 38, 40, 42, 44
+            const klausDates = [
+                '2025-09-03', // Week 36
+                '2025-09-17', // Week 38
+                '2025-10-01', // Week 40
+                '2025-10-15', // Week 42
+                '2025-10-29'  // Week 44
+            ];
+            
+            klausDates.forEach(dateStr => {
+                events.push({
+                    id: generateId(),
+                    type: 'Træning med Klaus Balic',
+                    title: 'Træning med Klaus Balic',
+                    location: 'Padel7500',
+                    notes: '',
+                    startDate: new Date(dateStr + 'T20:00:00').toISOString(),
+                    endDate: new Date(dateStr + 'T22:00:00').toISOString(),
+                    attendance: {}
+                });
+            });
+            
+            // Move Your Game trainings
+            events.push({
+                id: generateId(),
+                type: 'Træning med Move Your Game',
+                title: 'Træning med Move Your Game',
+                location: 'Padel7500',
+                notes: '',
+                startDate: new Date('2025-09-14T08:00:00').toISOString(),
+                endDate: new Date('2025-09-14T10:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Træning med Move Your Game',
+                title: 'Træning med Move Your Game',
+                location: 'Padel7500',
+                notes: '',
+                startDate: new Date('2025-10-26T08:00:00').toISOString(),
+                endDate: new Date('2025-10-26T10:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            // Tournaments in Padel7500
+            events.push({
+                id: generateId(),
+                type: 'Turneringer i Padel7500',
+                title: 'MBP Mix Open',
+                location: 'Padel7500',
+                notes: 'Mix25, Mix35, Mix50, Mix100',
+                startDate: new Date('2025-09-19T17:00:00').toISOString(),
+                endDate: new Date('2025-09-19T23:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Turneringer i Padel7500',
+                title: 'ANTU Open',
+                location: 'Padel7500',
+                notes: 'Dame25, Dame 50, Dame 100 og Herre25, Herre50, Herre 100',
+                startDate: new Date('2025-09-27T09:00:00').toISOString(),
+                endDate: new Date('2025-09-27T23:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Turneringer i Padel7500',
+                title: 'Padel 7500 Open #4',
+                location: 'Padel7500',
+                notes: 'Dame25, Dame 50, Dame 100, og Herre25, Herre50, Herre 100, Herre 200',
+                startDate: new Date('2025-11-01T09:00:00').toISOString(),
+                endDate: new Date('2025-11-01T23:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Turneringer i Padel7500',
+                title: 'STATE Open',
+                location: 'Padel7500',
+                notes: 'Dame25, Dame 50, Dame 100 og Herre25, Herre50, Herre 100',
+                startDate: new Date('2025-12-13T09:00:00').toISOString(),
+                endDate: new Date('2025-12-13T23:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            // Lunar matches
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Padel Skjern - Ballbusters 1',
+                location: 'Padel7500',
+                notes: 'Hjemmekamp i Lunar-turneringen',
+                startDate: new Date('2025-09-21T10:00:00').toISOString(),
+                endDate: new Date('2025-09-21T13:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Brumbasserne',
+                location: 'PadelWorld Ikast',
+                notes: 'Udekamp i Lunar-turneringen',
+                startDate: new Date('2025-10-10T18:00:00').toISOString(),
+                endDate: new Date('2025-10-10T21:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Nøddepatruljen',
+                location: 'PadelWorld Herning',
+                notes: 'Udekamp i Lunar-turneringen',
+                startDate: new Date('2025-11-05T19:00:00').toISOString(),
+                endDate: new Date('2025-11-05T22:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Staby Efterskole',
+                location: 'Staby Efterskole',
+                notes: 'Udekamp i Lunar-turneringen',
+                startDate: new Date('2025-11-06T18:00:00').toISOString(),
+                endDate: new Date('2025-11-06T21:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Branditterne',
+                location: 'Padel7500',
+                notes: 'Hjemmekamp i Lunar-turneringen',
+                startDate: new Date('2025-11-09T14:00:00').toISOString(),
+                endDate: new Date('2025-11-09T17:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            events.push({
+                id: generateId(),
+                type: 'Lunar-kampe',
+                title: 'vs Bamses venner',
+                location: 'Padel7500',
+                notes: 'Hjemmekamp i Lunar-turneringen',
+                startDate: new Date('2025-11-14T18:00:00').toISOString(),
+                endDate: new Date('2025-11-14T21:00:00').toISOString(),
+                attendance: {}
+            });
+            
+            saveAll();
+            console.log('Tilføjede holdets træninger og kampe med tilmeldingssystem');
+        }
+
+        // Import/Export
+        function buildICS() {
+            const lines = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Padel 7500 CT - Din Fertilitet//DA',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'X-WR-CALNAME:Padel 7500 CT - Din Fertilitet',
+                'X-WR-CALDESC:Kalender for Padel 7500 CT - Din Fertilitet holdet',
+                'BEGIN:VTIMEZONE',
+                'TZID:Europe/Copenhagen',
+                'BEGIN:DAYLIGHT',
+                'TZOFFSETFROM:+0100',
+                'TZOFFSETTO:+0200',
+                'TZNAME:CEST',
+                'DTSTART:19700329T020000',
+                'RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU',
+                'END:DAYLIGHT',
+                'BEGIN:STANDARD',
+                'TZOFFSETFROM:+0200',
+                'TZOFFSETTO:+0100',
+                'TZNAME:CET',
+                'DTSTART:19701025T030000',
+                'RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU',
+                'END:STANDARD',
+                'END:VTIMEZONE'
+            ];
+
+            events.forEach(event => {
+                const uid = `${event.id}@padelcalendar`;
+                const created = toICSStamp(new Date());
+                const start = toICSStamp(new Date(event.startDate));
+                const end = toICSStamp(new Date(event.endDate));
+                
+                let description = `Type: ${escapeICS(event.type)}`;
+                if (event.notes) {
+                    description += `\\n\\n${escapeICS(event.notes)}`;
+                }
+                
+                // Add attendance info
+                const summary = getAttendanceSummary(event);
+                description += `\\n\\nTilmeldinger:`;
+                description += `\\n✅ Kommer: ${summary.confirmed}`;
+                description += `\\n❌ Kan ikke: ${summary.declined}`;
+                description += `\\n⏳ Afventer: ${summary.pending}`;
+
+                lines.push(
+                    'BEGIN:VEVENT',
+                    `UID:${uid}`,
+                    `DTSTAMP:${created}`,
+                    `DTSTART;TZID=Europe/Copenhagen:${start}`,
+                    `DTEND;TZID=Europe/Copenhagen:${end}`,
+                    `SUMMARY:${escapeICS(event.title)}`,
+                    event.location ? `LOCATION:${escapeICS(event.location)}` : '',
+                    `DESCRIPTION:${description}`,
+                    'END:VEVENT'
+                );
+            });
+
+            lines.push('END:VCALENDAR');
+            return lines.filter(line => line).join('\r\n');
+        }
+
+        function exportICS() {
+            const icsContent = buildICS();
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'padel-7500-ct-din-fertilitet-2025.ics';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isMobile) {
+                showToast('Kalender eksporteret! Åbn filen med din kalender-app', 'success');
+            } else {
+                showToast('Kalender eksporteret! Åbn filen for at importere', 'success');
+            }
+        }
+
+        function exportJSON() {
+            const blob = new Blob([JSON.stringify(events, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'padel-7500-ct-din-fertilitet-2025.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Data eksporteret', 'success');
+        }
+
+        function importJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const imported = JSON.parse(event.target.result);
+                    if (!Array.isArray(imported)) {
+                        throw new Error('Invalid format');
+                    }
+
+                    // Filter events within date range
+                    const validEvents = imported.filter(e => 
+                        withinLimits(e.startDate) && withinLimits(e.endDate)
+                    );
+
+                    if (validEvents.length === 0) {
+                        showToast('Ingen gyldige begivenheder i filen', 'error');
+                        return;
+                    }
+
+                    // Ensure all events have IDs and attendance
+                    validEvents.forEach(e => {
+                        if (!e.id) e.id = generateId();
+                        if (!e.attendance) e.attendance = {};
+                    });
+
+                    events = validEvents;
+                    saveAll();
+                    renderCalendar();
+                    renderUpcoming();
+                    updateCountdown();
+                    showToast(`${validEvents.length} begivenheder importeret`, 'success');
+                } catch (error) {
+                    showToast('Fejl ved import: ' + error.message, 'error');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            e.target.value = '';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Check if focus is in input field
+            const activeEl = document.activeElement;
+            const isInputFocused = activeEl && (
+                activeEl.tagName === 'INPUT' ||
+                activeEl.tagName === 'TEXTAREA' ||
+                activeEl.tagName === 'SELECT'
+            );
+
+            // Check if modal is open
+            const modalOpen = document.getElementById('eventModal').classList.contains('active') ||
+                            document.getElementById('attendanceModal').classList.contains('active') ||
+                            document.getElementById('sheetsSetupModal').classList.contains('active');
+
+            if (modalOpen && e.key === 'Escape') {
+                closeModal();
+                closeAttendance();
+                closeSheetsSetup();
+                return;
+            }
+
+            // Don't trigger shortcuts when typing
+            if (isInputFocused) return;
+
+            switch(e.key) {
+                case 'ArrowLeft':
+                    changeMonth(-1);
+                    break;
+                case 'ArrowRight':
+                    changeMonth(1);
+                    break;
+                case 'n':
+                    if (!modalOpen) openModal();
+                    break;
+            }
+        });
+
+        // Initialize
+        function init() {
+            // Clear any existing data and reload with all new events - v10 with attendance
+            if (localStorage.getItem('padelCalendarCleared2025v10') !== 'true') {
+                localStorage.removeItem(STORAGE_KEY);
+                // Clear all old version flags
+                for (let i = 1; i <= 9; i++) {
+                    localStorage.removeItem(`padelCalendarCleared2025v${i}`);
+                }
+                localStorage.removeItem('padelCalendarCleared2025');
+                localStorage.setItem('padelCalendarCleared2025v10', 'true');
+                events = []; // Start fresh
+            } else {
+                loadAll();
+            }
+            
+            // If calendar is empty, add all trainings and matches
+            if (events.length === 0) {
+                addInitialTeamEvents();
+            }
+            
+            // Set current month to today if within range, otherwise August 2025
+            const today = new Date();
+            if (today >= START_DATE && today <= END_DATE) {
+                currentMonth = today.getMonth();
+                currentYear = today.getFullYear();
+            } else {
+                currentMonth = 7; // August - has many events
+                currentYear = 2025;
+            }
+            
+            renderCalendar();
+            renderUpcoming();
+            updateCountdown();
+            
+            // Update countdown every minute
+            countdownInterval = setInterval(updateCountdown, 60000);
+            
+            // Check if Sheets is configured and load data
+            if (isSheetsConfigured()) {
+                loadFromSheets();
+                startSheetsSync();
+            } else {
+                updateConnectionStatus('disconnected');
+            }
+        }
+
+        // Start app
+        init();
+    </script>
+</body>
+</html>
